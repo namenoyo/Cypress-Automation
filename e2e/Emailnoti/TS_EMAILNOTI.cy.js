@@ -1,6 +1,6 @@
 // emailnoti.cy.js
 // ======================= Assertion กลาง =======================
-const assertion = require('../../fixtures/Assertion');
+const assertion = require('../../fixtures/assertion');
 const loginTestCases = require('../../fixtures/Data_Username');
 const url = require('../../fixtures/Env_NBS_URL');
 const Var_DDMMYYYY = require('../../fixtures/Var_DDMMYYYY');
