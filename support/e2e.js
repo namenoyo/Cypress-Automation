@@ -17,3 +17,4 @@
 import './commands'
 import 'cypress-xpath'
 import 'cypress-real-events/support';
+import 'cypress-mochawesome-reporter/register';

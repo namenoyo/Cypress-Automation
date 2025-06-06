@@ -21,7 +21,7 @@ const { Go_to_CIS } = require('../../Reuseable/Go_to_CIS');
 
 describe('ตรวจสอบหน้าค้นหาข้อมูลลูกค้า', () => {
   
-   it('ตรวจสอบ Element บนหน้าจอ', () => {
+   it('TC-Search-Cust-001', () => {           //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และตรวจสอบ Element บนหน้าจอ
       // Arrange: เตรียมข้อมูล user
       const testUser = loginTestCases.find(tc => tc.expectSuccess);
   
@@ -61,6 +61,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         const selector = Selector[selKey];
         if (!selector) {
           cy.log(`❌ FAIL: ไม่พบ selector key ${selKey}`);
+          cy.task('logToReport', `❌ FAIL: ไม่พบ selector key ${selKey}`);
           return;
         }
         // ใช้ Cypress.$ เพื่อ query DOM ตรง ๆ ไม่ throw error
@@ -68,14 +69,16 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
           const $el = Cypress.$(selector);
           if ($el.length > 0 && $el.is(':visible')) {
             cy.log(`✅ PASS: ${selKey}`);
+            cy.task('logToReport', `✅ PASS: ${selKey}`);
           } else {
             cy.log(`❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
+            cy.task('logToReport', `❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
         }
       });
     });
   });
 
-  it('ค้นหาด้วยเลขกรมธรรม์', () => {
+  it('TC-Search-Cust-002 ', () => {         //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และค้นหาด้วยเลขกรมธรรม์
     cy.viewport('macbook-16'); // ให้เห็นหน้าจอ 100%
     const testUser = loginTestCases.find(tc => tc.expectSuccess);
     // Step 1: Login + Navigate CIS
@@ -136,14 +139,17 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
       const selector = Selector[selKey];
       if (!selector) {
         cy.log(`❌ FAIL: ไม่พบ selector key ${selKey}`);
+        cy.task('logToReport', `❌ FAIL: ไม่พบ selector key ${selKey}`);
         return;
       }
       cy.then(() => {
         const $el = Cypress.$(selector);
         if ($el.length > 0 && $el.is(':visible')) {
           cy.log(`✅ PASS: ${selKey}`);
+          cy.task('logToReport', `✅ PASS: ${selKey}`);
         } else {
           cy.log(`❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
+          cy.task('logToReport', `❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
         }
       });
     });
