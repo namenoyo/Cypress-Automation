@@ -100,6 +100,7 @@ module.exports = {
   SELECTOR_Automatic_Alteration_SEARCH_10: '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(12) > div > div > input',
 
 // --- CIS ---
+// หน้าเมนูหลัก CIS ค้นหาลูกค้า
   SELECTOR_CIS_MENU_SUB_1_Navigate_1_Menu_Bar_Label: 'a[href="#menu-item-2000"].yui3-menu-label',
   SELECTOR_CIS_MENU_SUB_1_Navigate_2_Menu_Bar_Label: 'a[href="#menu-item-1800"].yui3-menu-label',
   SELECTOR_CIS_MENU_SUB_1_Navigate_3_Menu_Bar_Label: 'a.yui3-menuitem-content[role="menuitem"][href^="/nbsweb/secure/remoteaction/cisapp/react/index.html"]',
