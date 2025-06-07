@@ -2,7 +2,7 @@
 // สำหรับเก็บ URL กลาง
 
 module.exports = {
-  SIT_NBS_PAGE: 'https://sitnbs.thaisamut.co.th/nbsweb/secure/home.html',
-  UAT_NBS_PAGE: 'https://uatnbs.thaisamut.co.th/nbsweb/secure/home.html',
+  ENV_SIT_NBS: 'https://sitnbs.thaisamut.co.th/nbsweb/secure/home.html',
+  ENV_UAT_NBS: 'https://uatnbs.thaisamut.co.th/nbsweb/secure/home.html',
  
 };

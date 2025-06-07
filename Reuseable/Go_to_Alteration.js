@@ -1,5 +1,5 @@
 // Go_to_Alteration.js
-// Navigate กลาง เอาไว้ไปยัง เมนู Automatic Alteration
+// Navigate ฟังก์ชันกลางสำหรับเข้าเมนู Automatic Alteration
 
 const Selector = require('../fixtures/Selector');
 

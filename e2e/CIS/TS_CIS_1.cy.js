@@ -4,30 +4,37 @@
 
 // ======================= Function กลาง =======================
 
-const url = require('../../fixtures/Env_NBS_URL');
-const Login = require('../../Reuseable/Login');
-const loginTestCases = require('../../fixtures/Data_Username');
 const Selector = require('../../fixtures/Selector');
 const { Go_to_NBS } = require('../../Reuseable/Go_to_NBS');
-//const { Go_to_NBS_Portal } = require('../../Reuseable/Go_to_NBS Portal');
-const { goToAlterationPage } = require('../../Reuseable/Go_to_Alteration');
-const { searchInquiryInOrigin } = require('../../Reuseable/cy_origin');
 const { Go_to_CIS } = require('../../Reuseable/Go_to_CIS');
+
+const loginTestCases = require('../../fixtures/Data_Username');
+const url = require('../../fixtures/Env_NBS_URL');
+
+// ดึง user ที่ expectSuccess เป็น true ตัวแรกมาใช้
+const testUser = loginTestCases.find(tc => tc.expectSuccess);
+
+// กำหนด เลือก ENV
+const NBS_URL = url.ENV_SIT_NBS;   
+//const NBS_URL = url.ENV_UAT_NBS;
 
 
 // ======================= Test Case =======================
-
-// TS-CIS-Search-Cust-001 + TS-CIS-Search-Cust-002
-
 describe('ตรวจสอบหน้าค้นหาข้อมูลลูกค้า', () => {
-  
-   it('TC-Search-Cust-001', () => {           //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และตรวจสอบ Element บนหน้าจอ
-      // Arrange: เตรียมข้อมูล user
-      const testUser = loginTestCases.find(tc => tc.expectSuccess);
-  
-      // 1. Login + Navigate CIS
-      Go_to_CIS({ url: url.SIT_NBS_PAGE, testUser });
-  
+  beforeEach(() => {
+    cy.viewport('macbook-16'); // ให้เห็นหน้าจอ 100%
+    // 1. Login + Navigate CIS (Go_to_CIS จะจัดการ login และเมนูทั้งหมด)
+    Go_to_NBS({
+      url: NBS_URL,
+      testUser
+    });
+  });
+
+  it('TC-Search-Cust-001', () => {           //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และตรวจสอบ Element บนหน้าจอ
+      
+      // ใช้ฟังก์ชัน Go_to_CIS ที่จัดการการเข้าเมนู CIS
+      Go_to_CIS();
+
       // 2. Assertion: ตรวจสอบว่ามีข้อความ 'ค้นหาข้อมูล' ในตำแหน่ง SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label
       cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label, { timeout: 10000 })
         .should('be.visible')
@@ -79,10 +86,9 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
   });
 
   it('TC-Search-Cust-002 ', () => {         //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และค้นหาด้วยเลขกรมธรรม์
-    cy.viewport('macbook-16'); // ให้เห็นหน้าจอ 100%
-    const testUser = loginTestCases.find(tc => tc.expectSuccess);
-    // Step 1: Login + Navigate CIS
-      Go_to_CIS({ url: url.SIT_NBS_PAGE, testUser });
+    
+      // ใช้ฟังก์ชัน Go_to_CIS ที่จัดการการเข้าเมนู CIS
+      Go_to_CIS();
 
       // 2. Assertion: ตรวจสอบว่ามีข้อความ 'ค้นหาข้อมูล' ในตำแหน่ง SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label
       cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label, { timeout: 10000 })

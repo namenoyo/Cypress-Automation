@@ -73,7 +73,7 @@ module.exports = {
     label: 'ระบบงาน NBS Portal',
     href: '#menu-item-98000',
   },
-  HHOME_SUB_MENU_Navigate_2: {
+  HOME_SUB_MENU_Navigate_2: {
     label: 'Home',
     href: '/nbsweb/secure/msa/nbsportal/index.html',
     role: 'menuitem',
