@@ -1,4 +1,6 @@
 // TS_Emailnoti.cy.js
+
+/*
 // ======================= Assertion กลาง =======================
 const assertion = require('../../fixtures/assertion');
 // ======================= Import Reuseable Functions =======================
@@ -136,3 +138,5 @@ describe.only('Emailnoti Access (Loop)', () => {
   });
 });
 // ======================= END =======================
+
+*/

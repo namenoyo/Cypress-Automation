@@ -1,6 +1,7 @@
 // TS_Alteration_1.cy.js
 // ทดสอบการ login และคลิกเมนู NBS Portal > Home
 
+/*
 const Selector = require('../../fixtures/Selector');
 const { Go_to_NBS } = require('../../Reuseable/Go_to_NBS');
 const { Go_to_NBS_Portal } = require('../../Reuseable/Go_to_NBS Portal');
@@ -100,4 +101,4 @@ describe('Alteration - ดำเนินการหลัง goToAlterationPag
 
 
 
-
+*/
