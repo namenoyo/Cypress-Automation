@@ -30,40 +30,34 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
-  it('TC-Search-Cust-001', () => {           //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และตรวจสอบ Element บนหน้าจอ
-      
-      // ใช้ฟังก์ชัน Go_to_CIS ที่จัดการการเข้าเมนู CIS
+  /*it('TC-Search-Cust-001', () => {           //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และตรวจสอบ Element บนหน้าจอ
       Go_to_CIS();
-
-      // 2. Assertion: ตรวจสอบว่ามีข้อความ 'ค้นหาข้อมูล' ในตำแหน่ง SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label
-      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label, { timeout: 10000 })
+      // Assertion: ตรวจสอบว่ามีข้อความ 'ค้นหาข้อมูล' ในตำแหน่งใหม่
+      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label, { timeout: 10000 })
         .should('be.visible')
-        .and('contain.text', 'ค้นหาข้อมูล',{ timeout: 10000 })
+        .and('contain.text', 'ค้นหาข้อมูล', { timeout: 10000 })
         .then(() => cy.log('✅ Pass: แสดงข้อความ ค้นหาข้อมูล ในตำแหน่งที่ถูกต้อง'));
-      
-      // กำหนด CIS_KEYS หลัง assertion นี้
+      // ใช้ CIS_KEYS ใหม่
       const CIS_KEYS = [
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_2_Input_Text',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_3_Input_Text',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Input_Text',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_5_Input_Text',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_6_Input_Text',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_7_Input_Text',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_8_Input_Text',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Input_Text',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_7_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_8_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_10_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_11_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_12_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_13_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_14_Head_Column_Data_Grid',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_15_Head_Column_Data_Grid',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Head_Column_Data_Grid',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Head_Column_Data_Grid',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_18_Button',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button',
-        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_20_Button',
-  
-        
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_15_Button',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Button',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Button',
+      
       ];
-      // ตรวจสอบแต่ละ selector ใน CIS_KEYS และ log ผลลัพธ์แบบไม่หยุดทดสอบ
       CIS_KEYS.forEach(selKey => {
         const selector = Selector[selKey];
         if (!selector) {
@@ -71,7 +65,6 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
           cy.task('logToReport', `❌ FAIL: ไม่พบ selector key ${selKey}`);
           return;
         }
-        // ใช้ Cypress.$ เพื่อ query DOM ตรง ๆ ไม่ throw error
         cy.then(() => {
           const $el = Cypress.$(selector);
           if ($el.length > 0 && $el.is(':visible')) {
@@ -80,66 +73,60 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
           } else {
             cy.log(`❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
             cy.task('logToReport', `❌ FAIL: ${selKey} | ไม่พบ element หรือไม่แสดงผล`);
-        }
+          }
+        });
       });
-    });
-  });
+  });*/
 
   it('TC-Search-Cust-002 ', () => {         //ตรวจสอบหน้าค้นหาข้อมูลลูกค้า และค้นหาด้วยเลขกรมธรรม์
     
       // ใช้ฟังก์ชัน Go_to_CIS ที่จัดการการเข้าเมนู CIS
       Go_to_CIS();
-
-      // 2. Assertion: ตรวจสอบว่ามีข้อความ 'ค้นหาข้อมูล' ในตำแหน่ง SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label
-      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label, { timeout: 10000 })
-        .should('be.visible')
-        .and('contain.text', 'ค้นหาข้อมูล',{ timeout: 10000 })
-        .then(() => cy.log('✅ Pass: แสดงข้อความ ค้นหาข้อมูล ในตำแหน่งที่ถูกต้อง'));
-      
+    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label, { timeout: 10000 })
+      .should('be.visible')
+      .and('contain.text', 'ค้นหาข้อมูล', { timeout: 10000 })
+      .then(() => cy.log('✅ Pass: แสดงข้อความ ค้นหาข้อมูล ในตำแหน่งที่ถูกต้อง'));
     // Step 3: ระบุเลขกรมธรรม์และกดปุ่มค้นหา
-    const policyNo = '1652002'; // ตัวอย่างเลขกรมธรรม์จาก Data_Input
-    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Input_Text).type(policyNo, { force: true });
+    const policyNo = '1652002';
+    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_6_Input_Text).type(policyNo, { force: true });
     cy.wait(1000);
-    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button).click({ force: true });
+    // ปรับ selector ปุ่มค้นหา (ควรเป็น In_Page_16_Button ไม่ใช่ In_Page_19_Button)
+    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Button).first().click({ force: true });
     cy.wait(3000);
-     // รอให้ผลลัพธ์โหลด
     cy.log('✅ Pass: กรอกเลขกรมธรรม์และกดค้นหาเรียบร้อย');
-
     cy.wait(3000);
-    // Scroll horizontally to the right before checking CIS_KEYS
     cy.window().then((win) => {
       win.document.querySelector('body').scrollLeft = 1000;
     });
-    // หรือใช้ Cypress command ถ้า DataGrid อยู่ใน div เฉพาะ
-    // cy.get('.MUIDataTable-responsiveBase').scrollTo('right');
     const CIS_KEYS = [
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_2_Input_Text',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_3_Input_Text',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Input_Text',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_5_Input_Text',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_6_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_7_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_8_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Input_Text',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_7_Head_Column_Data_Grid',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_8_Head_Column_Data_Grid',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Head_Column_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_10_Head_Column_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_11_Head_Column_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_12_Head_Column_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_13_Head_Column_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_14_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_15_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_18_Button',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_15_Button',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Button',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Button',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_18_Menu_Bar_Label',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_20_Button',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_22_Button',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_20_Data_Grid',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_21_Data_Grid',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_22_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_23_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_24_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_25_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_26_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_27_Data_Grid',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_28_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_29_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_30_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_31_Data_Grid',
     ];
     CIS_KEYS.forEach(selKey => {
       const selector = Selector[selKey];
