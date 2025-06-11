@@ -4,7 +4,7 @@ module.exports = defineConfig({
   e2e: {
     // ระบุ path ของไฟล์เทสต์ให้ครอบคลุมทุกโฟลเดอร์ย่อย
     specPattern: 'e2e/**/*.cy.js',
-    supportFile: 'e2e/cypress/support/e2e.js',
+    supportFile: 'support/e2e.js',
     // baseUrl: 'http://localhost:3000', // เปลี่ยนตามโปรเจกต์ของคุณ
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {

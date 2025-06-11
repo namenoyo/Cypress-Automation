@@ -72,12 +72,12 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
   
-  it('TC-Test_Selector-002', () => {
+  it.only('TC-Test_Selector-002', () => {
     Go_to_CIS();
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
     cy.wait(5000);
-    // ตรวจสอบวัตถุหลักใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Detail_Panel ถึง _In_Page_41_Detail_Panel
+    cy.get('#section-cust-detail', { timeout: 20000 }).should('be.visible');
     const PANEL_KEYS = [
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_2_Detail_Panel',
@@ -121,11 +121,17 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_40_Detail_Panel',
       'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_41_Detail_Panel',
     ];
+    const notPassLogs = [];
+    let passCount = 0;
+    let notPassCount = 0;
     PANEL_KEYS.forEach(selKey => {
       const selector = Selector[selKey];
       if (!selector) {
-        cy.log(`❌ FAIL: ไม่พบ selector key ${selKey}`);
-        cy.task('logToReport', `❌ FAIL: ไม่พบ selector key ${selKey}`);
+        const msg = `❌ FAIL: ไม่พบ selector key ${selKey}`;
+        cy.log(msg);
+        cy.task('logToReport', msg);
+        notPassLogs.push(msg);
+        notPassCount++;
         return;
       }
       cy.get('body').then($body => {
@@ -135,12 +141,33 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
             .then(() => {
               cy.log(`✅ PASS: ${selKey}`);
               cy.task('logToReport', `✅ PASS: ${selKey}`);
+              passCount++;
+            }, () => {
+              const msg = `❌ FAIL: ${selKey}`;
+              cy.log(msg);
+              cy.task('logToReport', msg);
+              notPassLogs.push(msg);
+              notPassCount++;
             });
         } else {
-          cy.log(`⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`);
-          cy.task('logToReport', `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`);
+          const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
+          cy.log(msg);
+          cy.task('logToReport', msg);
+          notPassLogs.push(msg);
+          notPassCount++;
         }
       });
+    });
+    cy.then(() => {
+      if (notPassLogs.length > 0) {
+        cy.log('==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====');
+        notPassLogs.forEach(msg => cy.log(msg));
+        cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL_KEYS.length} ====`);
+        cy.task('logToReport', `==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====:\n${notPassLogs.join('\n')}\n==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL_KEYS.length} ====`);
+      } else {
+        cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
+        cy.task('logToReport', `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
+      }
     });
   });
 });
