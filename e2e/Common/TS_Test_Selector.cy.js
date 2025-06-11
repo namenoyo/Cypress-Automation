@@ -1,4 +1,4 @@
-// TS_LOGIN.cy.js
+// TS_Test_Selector.cy.js
 // ทดสอบการ login และคลิกเมนู NBS Portal > Home
 
 
@@ -29,33 +29,38 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
-  it('TC-Search-Cust-001', () => {
+  it('TC-Test_Selector-001', () => { 
     Go_to_CIS();
-    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label, { timeout: 10000 })
+    cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label, { timeout: 10000 })
       .should('be.visible')
       .and('contain.text', 'ค้นหาข้อมูล', { timeout: 10000 })
       .then(() => cy.log('✅ Pass: แสดงข้อความ ค้นหาข้อมูล ในตำแหน่งที่ถูกต้อง'));
 
-    const CIS_KEYS = [
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_4_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_5_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_6_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_7_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_8_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_9_Input_Text',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_10_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_11_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_12_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_13_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_14_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_15_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Head_Column_Data_Grid',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_18_Button',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_20_Button',
+      const policyNo = '1652002';
+          cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_6_Input_Text).type(policyNo, { force: true });
+          cy.wait(1000);
+          // ปรับ selector ปุ่มค้นหา (ควรเป็น In_Page_16_Button ไม่ใช่ In_Page_19_Button)
+          cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_16_Button).first().click({ force: true });
+          cy.wait(3000);
+          // เพิ่ม: กดปุ่ม In_Page_19_Button หลังจาก In_Page_16_Button
+          cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button).first().click({ force: true });
+          cy.wait(2000);
+
+    
+    // ตรวจสอบ CIS Detail Menu Bar Labels (In_Page_1 ถึง In_Page_10)
+    const CIS_DETAIL_MENU_KEYS = [
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_1_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_2_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_3_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_4_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_5_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_6_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_7_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_8_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_9_Menu_Bar_Label',
+      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_10_Menu_Bar_Label',
     ];
-    CIS_KEYS.forEach(selKey => {
+    CIS_DETAIL_MENU_KEYS.forEach(selKey => {
       const selector = Selector[selKey];
       if (!selector) {
         cy.log(`❌ FAIL: ไม่พบ selector key ${selKey}`);
