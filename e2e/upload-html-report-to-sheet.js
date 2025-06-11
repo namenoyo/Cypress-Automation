@@ -9,7 +9,8 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 // ====== CONFIG ======
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwRrCBTxh-WGK92NMGIxcqR_IxZ6fWoQ-T8aQu6RzlKkCG-lTbnZVR2TECoXxV38wrSrg/exec';
 
-const REPORT_PATH = 'C:/Users/HP_vi/cypress/cypress/reports/mochawesome.html';
+const REPORT_PATH = path.join(__dirname, '../cypress/reports/mochawesome.html');
+
 
 // ====== LOAD HTML & PARSE ======
 const html = fs.readFileSync(REPORT_PATH, 'utf8');
