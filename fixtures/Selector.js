@@ -136,7 +136,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_27_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(14) > p',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_28_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(16) > p',
   
-  //CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด
+  //CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด  CIS_MENU_SUB_1_SEARCH_1_Detail_1
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_1_Menu_Bar_Label: '#root > header > div > div:nth-child(1) > ul:nth-child(2)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_2_Menu_Bar_Label: '#menu-list > ul:nth-child(2) > li',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_3_Menu_Bar_Label: '#menu-list > ul:nth-child(3) > li',
