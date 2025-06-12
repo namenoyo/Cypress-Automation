@@ -13,7 +13,9 @@ function waitForCustomerInfoAndClaimHistory(panelHeaderSelector) {
     // Intercept claimHistory API ด้วย customerId
     cy.intercept('GET', `**/customerInfo/findNewClaimHistory.html?params.customerId=${customerId}`).as('getClaimHistory');
     // trigger UI ที่จะเรียก claimHistory (panel header)
-    cy.get(panelHeaderSelector, { timeout: 60000 }).should('be.visible');
+    cy.get(panelHeaderSelector, { timeout: 60000 })
+      .scrollIntoView()
+      .should('be.visible');
     // รอ claimHistory API
     return cy.wait('@getClaimHistory', { timeout: 60000 }).then(() => ({ customerId }));
   });

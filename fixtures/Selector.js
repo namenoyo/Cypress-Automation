@@ -7,17 +7,17 @@ module.exports = {
   loginButton: 'button[name="loginButton"]',
   body: 'body',
   // เพิ่ม selector อื่นๆ ตามที่ใช้ในไฟล์ TS_EMAILNOTI
-  
-  
+
+
   // ตัวอย่าง selector ที่ใช้กับ cy.get('input#' + monthInputId) และ yearInputId
   monthInput: (id) => `input#${id}`,
   yearInput: (id) => `input#${id}`,
-  
-  
+
+
   // ตัวอย่าง selector ที่ใช้กับ cy.get('span.' + spanClassBtn)
   spanClass: (className) => `span.${className}`,
-  
-  
+
+
   // Selector สำหรับปุ่มและ element ที่ใช้บ่อย (จากทั้งสองไฟล์)
   BTN_CLEAR: "span.MuiButton-label:contains('ล้างเงื่อนไข')",
   BTN_SEARCH: "span.MuiButton-label:contains('ค้นหา')",
@@ -28,13 +28,13 @@ module.exports = {
     { selector: "label:contains('รายละเอียด') + div, label:contains('Detail') + div", label: 'รายละเอียด' },
     { selector: "input[name='detail'], textarea[name='detail']", label: 'ช่องรายละเอียด' }
   ],
-  
+
   // เพิ่มจาก Reuseable/Selector.js
   policyNoInput: 'input[name="policyNo"], input[id*="policy"], input[aria-label*="เลขที่กรมธรรม์"]',
   insuredFirstNameInput: 'input[name*="firstName"], input[id*="firstName"], input[aria-label*="ชื่อ"]',
   insuredLastNameInput: 'input[name*="lastName"], input[id*="lastName"], input[aria-label*="นามสกุล"]',
   cardNoInput: 'input[name*="card"], input[id*="card"], input[aria-label*="บัตร"]',
-  
+
   // เมนูหลัก
   SERVICE_MENU: {
     label: 'ระบบงานให้บริการ',
@@ -88,23 +88,23 @@ module.exports = {
     label: 'ค้นหาใบสอบถาม',
     selector: '<span class="MuiButton-label">ค้นหาใบสอบถาม</span>',
   },
-  SELECTOR_Automatic_Alteration_SEARCH_1:  'input[name="inquiryDateFrom"][placeholder="เริ่มต้น"][type="text"].MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd',
-  SELECTOR_Automatic_Alteration_SEARCH_2:  'input[name="inquiryDateTo"][placeholder="สิ้นสุด"][type="text"].MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd',
-  SELECTOR_Automatic_Alteration_SEARCH_3:  'input[type="text"].MuiInputBase-input.MuiInput-input[value^="__-"]',
-  SELECTOR_Automatic_Alteration_SEARCH_4:  '#branchSourceCode > div > div > div > div',
-  SELECTOR_Automatic_Alteration_SEARCH_5:  '#serviceCode > div > div > div > div',
-  SELECTOR_Automatic_Alteration_SEARCH_6:  '#inquiryStatus > div > div > div > div',
-  SELECTOR_Automatic_Alteration_SEARCH_7:  '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(9) > div > div > input',
-  SELECTOR_Automatic_Alteration_SEARCH_8:  '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(10) > div > div > input',
-  SELECTOR_Automatic_Alteration_SEARCH_9:  '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(11) > div > div > input',
+  SELECTOR_Automatic_Alteration_SEARCH_1: 'input[name="inquiryDateFrom"][placeholder="เริ่มต้น"][type="text"].MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd',
+  SELECTOR_Automatic_Alteration_SEARCH_2: 'input[name="inquiryDateTo"][placeholder="สิ้นสุด"][type="text"].MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd',
+  SELECTOR_Automatic_Alteration_SEARCH_3: 'input[type="text"].MuiInputBase-input.MuiInput-input[value^="__-"]',
+  SELECTOR_Automatic_Alteration_SEARCH_4: '#branchSourceCode > div > div > div > div',
+  SELECTOR_Automatic_Alteration_SEARCH_5: '#serviceCode > div > div > div > div',
+  SELECTOR_Automatic_Alteration_SEARCH_6: '#inquiryStatus > div > div > div > div',
+  SELECTOR_Automatic_Alteration_SEARCH_7: '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(9) > div > div > input',
+  SELECTOR_Automatic_Alteration_SEARCH_8: '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(10) > div > div > input',
+  SELECTOR_Automatic_Alteration_SEARCH_9: '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(11) > div > div > input',
   SELECTOR_Automatic_Alteration_SEARCH_10: '#tab\\/inquiry\\/search\\/main > div > div > div:nth-child(2) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > form > div > div > div > div > div > div > div > div > div:nth-child(12) > div > div > input',
 
-// --- CIS ---
-// หน้าเมนูหลัก CIS ค้นหาลูกค้า
+  // --- CIS ---
+  // หน้าเมนูหลัก CIS ค้นหาลูกค้า
   SELECTOR_CIS_MENU_SUB_1_Navigate_1_Menu_Bar_Label: 'a[href="#menu-item-2000"].yui3-menu-label',
   SELECTOR_CIS_MENU_SUB_1_Navigate_2_Menu_Bar_Label: 'a[href="#menu-item-1800"].yui3-menu-label',
   SELECTOR_CIS_MENU_SUB_1_Navigate_3_Menu_Bar_Label: 'a.yui3-menuitem-content[role="menuitem"][href^="/nbsweb/secure/remoteaction/cisapp/react/index.html"]',
-  
+
   // CIS Customer Search Page (new selectors)
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_1_Menu_Bar_Label: 'p.MuiTypography-root.MuiTypography-body1.MuiTypography-colorPrimary[style*="font-weight: bold;"]:contains("ค้นหาข้อมูล")',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_2_Input_Text: '#cardId',
@@ -125,7 +125,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_17_Button: 'span.MuiButton-label.MuiButton-label:contains("สร้าง Case")',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_18_Menu_Bar_Label: '#tab\\/cisapp_customer\\/search > div > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-true > div > div > div.MuiToolbar-root.MuiToolbar-regular.MUIDataTableToolbar-root-52.MuiToolbar-gutters > div.MUIDataTableToolbar-left-53 > span > span:nth-child(4)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_19_Button: '#MUIDataTableBodyRow-0 > td:nth-child(2) > button',
-  
+
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_20_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(4) > div > div:nth-child(1) > i',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_21_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(4) > div > div:nth-child(2) > p',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_22_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(6)',
@@ -135,7 +135,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_26_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(12) > span > div > div:nth-child(1) > p',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_27_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(14) > p',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_In_Page_28_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(16) > p',
-  
+
   //CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด  CIS_MENU_SUB_1_SEARCH_1_Detail_1
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_1_Menu_Bar_Label: '#root > header > div > div:nth-child(1) > ul:nth-child(2)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_2_Menu_Bar_Label: '#menu-list > ul:nth-child(2) > li',
@@ -147,7 +147,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_8_Menu_Bar_Label: '#menu-list > ul:nth-child(9) > li',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_9_Menu_Bar_Label: '#menu-list > ul:nth-child(10) > li',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_10_Menu_Bar_Label: '#menu-list > ul:nth-child(11) > li',
-  
+
   // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ข้อมูลส่วนตัว
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel: '#section-cust-detail > div > div.MuiButtonBase-root.MuiExpansionPanelSummary-root.makeStyles-root-48.uncollapsible.Mui-expanded > div > div > div.MuiGrid-root.ExpansionPanelSummaryTitle.MuiGrid-item',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_2_Detail_Panel: '#section-cust-detail > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(1) > div > div:nth-child(2) > div > div > div > div:nth-child(1) > div > div > p',
@@ -207,7 +207,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2_In_Page_13_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(8)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2_In_Page_14_Data_Grid: '#MUIDataTableBodyRow-1 > td:nth-child(8)',
 
-// CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ข้อมูลที่ติดต่อ
+  // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ข้อมูลที่ติดต่อ
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_1_Header_Panel: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(4) > div > div > div.MuiButtonBase-root.MuiExpansionPanelSummary-root.makeStyles-root-48.uncollapsible.Mui-expanded > div > div > div.MuiGrid-root.ExpansionPanelSummaryTitle.MuiGrid-item',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_2_Button: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(4) > div > div > div.MuiButtonBase-root.MuiExpansionPanelSummary-root.makeStyles-root-48.uncollapsible.Mui-expanded > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-true > div > div > button',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_3_Head_Column_Data_Grid: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(4) > div > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(1)',
@@ -221,7 +221,7 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_11_Head_Column_Data_Grid: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(4) > div > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(5)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_12_Data_Grid: '#MUIDataTableBodyRow-0 > td:nth-child(10)',
 
-// CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ข้อมูลครอบครัว
+  // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ข้อมูลครอบครัว
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_1_Header_Panel: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(5) > div > div.MuiButtonBase-root.MuiExpansionPanelSummary-root.makeStyles-root-48.Mui-expanded > div.MuiExpansionPanelSummary-content.Mui-expanded > div',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_2_Head_Column_Data_Grid: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(5) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(1)',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_3_Head_Column_Data_Grid: '#tab\/cisapp_customer\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(5) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(2)',
@@ -244,5 +244,36 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_10_Head_Column_Data_Grid: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(9) > span > div',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_11_Head_Column_Data_Grid: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(10) > span > div',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_12_Head_Column_Data_Grid: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(11) > span > div',
+
+  // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel รายละเอียดกรมธรรม์
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel: '#section-policy-detail-1652002 > .MuiPaper-root > .MuiButtonBase-root > .MuiExpansionPanelSummary-content > :nth-child(1) > .ExpansionPanelSummaryTitle',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_2_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_3_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_4_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(2) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_5_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(2) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_6_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(3) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_7_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(3) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_8_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(4) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_9_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(4) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_10_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(5) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_11_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(5) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_12_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(6) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_13_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(6) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_14_Detail_Panel: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(7) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4 > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_15_Detail_Panel_Data: '#section-policy-detail-1652002 > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div:nth-child(2) > div:nth-child(7) > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8 > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_16_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(1) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_17_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(1) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_18_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(2) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_19_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(2) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_20_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(3) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_21_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(3) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_22_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(4) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_23_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(4) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_24_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(5) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_25_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(5) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_26_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(6) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_27_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(6) > :nth-child(2) > div > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_28_Detail_Panel: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(7) > :nth-child(1) > p',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_29_Detail_Panel_Data: '#section-policy-detail-1652002 > div >div.MuiCollapse-container.MuiCollapse-entered >div >div > div > div> div > :nth-child(3) > :nth-child(7) > :nth-child(2) > div > p',
 
 };
