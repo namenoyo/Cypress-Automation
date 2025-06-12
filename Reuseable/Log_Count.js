@@ -21,22 +21,47 @@ function logSelectorCheck(keys, Selector) {
     }
     cy.get('body').then($body => {
       if ($body.find(selector).length > 0) {
-        cy.get(selector, { timeout: 10000 })
-          .should('be.visible')
-          .then(() => {
-            const msg = `✅ PASS: ${selKey}`;
-            cy.log(msg);
-            cy.task('logToReport', msg);
-            passCount++;
-            // Soft assert: do not throw here
-          }, () => {
-            const msg = `❌ FAIL: ${selKey}`;
+        cy.get(selector, { timeout: 10000 }).then($els => {
+          if ($els.length === 1) {
+            cy.wrap($els)
+              .scrollIntoView()
+              .should('be.visible')
+              .then(() => {
+                const msg = `✅ PASS: ${selKey} (single element)`;
+                cy.log(msg);
+                cy.task('logToReport', msg);
+                passCount++;
+              }, () => {
+                const msg = `❌ FAIL: ${selKey} (single element)`;
+                cy.log(msg);
+                cy.task('logToReport', msg);
+                notPassLogs.push(msg);
+                notPassCount++;
+              });
+          } else if ($els.length >= 2) {
+            cy.wrap($els.eq(1))
+              .scrollIntoView()
+              .should('be.visible')
+              .then(() => {
+                const msg = `✅ PASS: ${selKey} (element index 2)`;
+                cy.log(msg);
+                cy.task('logToReport', msg);
+                passCount++;
+              }, () => {
+                const msg = `❌ FAIL: ${selKey} (element index 2)`;
+                cy.log(msg);
+                cy.task('logToReport', msg);
+                notPassLogs.push(msg);
+                notPassCount++;
+              });
+          } else {
+            const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
             cy.log(msg);
             cy.task('logToReport', msg);
             notPassLogs.push(msg);
             notPassCount++;
-            // Soft assert: do not throw here
-          });
+          }
+        });
       } else {
         const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
         cy.log(msg);

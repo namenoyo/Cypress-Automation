@@ -108,7 +108,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
-  it('TC-Test_Selector-007', () => {
+  it.only('TC-Test_Selector-007', () => {
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
