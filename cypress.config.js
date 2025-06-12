@@ -24,8 +24,8 @@ module.exports = defineConfig({
         }
       });
     },
-    viewportWidth: 1536, // macbook-16 width
-    viewportHeight: 960, // macbook-16 height
+    viewportWidth: 1920, // full HD width
+    viewportHeight: 1080, // full HD height
   },
   screenshotsFolder: 'cypress/screenshots',
   video: false // ปิดการบันทึกวิดีโอ (ถ้าไม่ต้องการ)

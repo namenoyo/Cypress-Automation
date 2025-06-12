@@ -8,6 +8,8 @@ const Selector = require('../../fixtures/Selector');
 const { Go_to_NBS } = require('../../Reuseable/Go_to_NBS');
 const { Go_to_CIS } = require('../../Reuseable/Go_to_CIS');
 const { searchAndOpenCisPolicyDetail } = require('../../Reuseable/cis_Policy_Detail');
+const { waitForCustomerInfoAndClaimHistory } = require('../../Reuseable/API_Wait');
+const { logSelectorCheck } = require('../../Reuseable/Log_Count');
 
 const loginTestCases = require('../../fixtures/Data_Username');
 const url = require('../../fixtures/Env_NBS_URL');
@@ -33,161 +35,85 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
 
   it('TC-Test_Selector-001', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1
     Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    cy.wait(5000);
-    // ตรวจสอบ CIS Detail Menu Bar Labels (In_Page_1 ถึง In_Page_10)
-    const CIS_DETAIL_MENU_KEYS = [
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_1_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_2_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_3_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_4_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_5_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_6_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_7_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_8_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_9_Menu_Bar_Label',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_10_Menu_Bar_Label',
-    ];
-    CIS_DETAIL_MENU_KEYS.forEach(selKey => {
-      const selector = Selector[selKey];
-      if (!selector) {
-        cy.log(`❌ FAIL: ไม่พบ selector key ${selKey}`);
-        cy.task('logToReport', `❌ FAIL: ไม่พบ selector key ${selKey}`);
-        return;
-      }
-      cy.get('body').then($body => {
-        if ($body.find(selector).length > 0) {
-          cy.get(selector, { timeout: 10000 })
-            .should('be.visible')
-            .then(() => {
-              cy.log(`✅ PASS: ${selKey}`);
-              cy.task('logToReport', `✅ PASS: ${selKey}`);
-            });
-        } else {
-          cy.log(`⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`);
-          cy.task('logToReport', `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`);
-        }
-      });
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(() => {
+      const CIS_DETAIL_MENU_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_1_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_2_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_3_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_4_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_5_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_6_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_7_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_8_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_9_Menu_Bar_Label',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_10_Menu_Bar_Label',
+      ];
+      logSelectorCheck(CIS_DETAIL_MENU_KEYS, Selector);
     });
   });
   
   it('TC-Test_Selector-002', () => {
     Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    cy.wait(5000);
-    cy.get('#section-cust-detail', { timeout: 20000 }).should('be.visible');
-    const PANEL_KEYS = [
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_2_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_3_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_4_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_5_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_6_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_7_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_8_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_9_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_10_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_11_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_12_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_13_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_14_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_15_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_16_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_17_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_18_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_19_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_20_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_21_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_22_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_23_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_24_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_25_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_26_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_27_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_28_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_29_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_30_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_31_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_32_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_33_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_34_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_35_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_36_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_37_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_38_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_39_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_40_Detail_Panel',
-      'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_41_Detail_Panel',
-    ];
-    const notPassLogs = [];
-    let passCount = 0;
-    let notPassCount = 0;
-    PANEL_KEYS.forEach(selKey => {
-      const selector = Selector[selKey];
-      if (!selector) {
-        const msg = `❌ FAIL: ไม่พบ selector key ${selKey}`;
-        cy.log(msg);
-        cy.task('logToReport', msg);
-        notPassLogs.push(msg);
-        notPassCount++;
-        return;
-      }
-      cy.get('body').then($body => {
-        if ($body.find(selector).length > 0) {
-          cy.get(selector, { timeout: 10000 })
-            .should('be.visible')
-            .then(() => {
-              cy.log(`✅ PASS: ${selKey}`);
-              cy.task('logToReport', `✅ PASS: ${selKey}`);
-              passCount++;
-            }, () => {
-              const msg = `❌ FAIL: ${selKey}`;
-              cy.log(msg);
-              cy.task('logToReport', msg);
-              notPassLogs.push(msg);
-              notPassCount++;
-            });
-        } else {
-          const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
-          cy.log(msg);
-          cy.task('logToReport', msg);
-          notPassLogs.push(msg);
-          notPassCount++;
-        }
-      });
-    });
-    cy.then(() => {
-      if (notPassLogs.length > 0) {
-        cy.log('==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====');
-        notPassLogs.forEach(msg => cy.log(msg));
-        cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL_KEYS.length} ====`);
-        cy.task('logToReport', `==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====:\n${notPassLogs.join('\n')}\n==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL_KEYS.length} ====`);
-      } else {
-        cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
-        cy.task('logToReport', `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
-      }
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
+      const PANEL2_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_3_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_5_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_7_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_9_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_11_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_13_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_15_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_16_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_17_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_18_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_19_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_20_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_21_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_22_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_23_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_24_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_25_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_26_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_27_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_28_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_29_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_30_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_31_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_32_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_33_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_34_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_35_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_36_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_37_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_38_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_39_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_40_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_41_Detail_Panel',
+      ];
+      logSelectorCheck(PANEL2_KEYS, Selector);
     });
   });
 
-  it.only('TC-Test_Selector-007', () => {
-    // Intercept customerInfoList ก่อน search
-    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+  it('TC-Test_Selector-007', () => {
     Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    // รอ response customerInfoList
-    cy.wait('@getCustomerInfoList', { timeout: 20000 }).then(({ response }) => {
-      const customerId = response.body?.data?.data?.[0]?.customerId;
-      expect(customerId, 'customerId from API').to.exist;
-      // Intercept claimHistory API ด้วย customerId
-      cy.intercept('GET', `**/customerInfo/findNewClaimHistory.html?params.customerId=${customerId}`).as('getClaimHistory');
-      // trigger UI ที่จะเรียก claimHistory (panel 7 header)
-      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel, { timeout: 20000 }).should('be.visible')
-      // รอ claimHistory API
-      cy.wait('@getClaimHistory', { timeout: 20000 });
-      // ตรวจสอบ selector panel 7
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel).then(() => {
       const PANEL7_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_2_Head_Column_Data_Grid',
@@ -202,54 +128,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_11_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_12_Head_Column_Data_Grid',
       ];
-      const notPassLogs = [];
-      let passCount = 0;
-      let notPassCount = 0;
-      PANEL7_KEYS.forEach(selKey => {
-        const selector = Selector[selKey];
-        if (!selector) {
-          const msg = `❌ FAIL: ไม่พบ selector key ${selKey}`;
-          cy.log(msg);
-          cy.task('logToReport', msg);
-          notPassLogs.push(msg);
-          notPassCount++;
-          return;
-        }
-        cy.get('body').then($body => {
-          if ($body.find(selector).length > 0) {
-            cy.get(selector, { timeout: 10000 })
-              .should('be.visible')
-              .then(() => {
-                cy.log(`✅ PASS: ${selKey}`);
-                cy.task('logToReport', `✅ PASS: ${selKey}`);
-                passCount++;
-              }, () => {
-                const msg = `❌ FAIL: ${selKey}`;
-                cy.log(msg);
-                cy.task('logToReport', msg);
-                notPassLogs.push(msg);
-                notPassCount++;
-              });
-          } else {
-            const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
-            cy.log(msg);
-            cy.task('logToReport', msg);
-            notPassLogs.push(msg);
-            notPassCount++;
-          }
-        });
-      });
-      cy.then(() => {
-        if (notPassLogs.length > 0) {
-          cy.log('==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====');
-          notPassLogs.forEach(msg => cy.log(msg));
-          cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL7_KEYS.length} ====`);
-          cy.task('logToReport', `==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====:\n${notPassLogs.join('\n')}\n==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL7_KEYS.length} ====`);
-        } else {
-          cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL7_KEYS.length} ====`);
-          cy.task('logToReport', `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL7_KEYS.length} ====`);
-        }
-      });
+      logSelectorCheck(PANEL7_KEYS, Selector);
     });
   });
 });
