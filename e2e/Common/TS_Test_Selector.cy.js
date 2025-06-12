@@ -72,7 +72,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
   
-  it.only('TC-Test_Selector-002', () => {
+  it('TC-Test_Selector-002', () => {
     Go_to_CIS();
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
@@ -168,6 +168,88 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
         cy.task('logToReport', `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL_KEYS.length} ====`);
       }
+    });
+  });
+
+  it.only('TC-Test_Selector-007', () => {
+    // Intercept customerInfoList ก่อน search
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    Go_to_CIS();
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // รอ response customerInfoList
+    cy.wait('@getCustomerInfoList', { timeout: 20000 }).then(({ response }) => {
+      const customerId = response.body?.data?.data?.[0]?.customerId;
+      expect(customerId, 'customerId from API').to.exist;
+      // Intercept claimHistory API ด้วย customerId
+      cy.intercept('GET', `**/customerInfo/findNewClaimHistory.html?params.customerId=${customerId}`).as('getClaimHistory');
+      // trigger UI ที่จะเรียก claimHistory (panel 7 header)
+      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel, { timeout: 20000 }).should('be.visible')
+      // รอ claimHistory API
+      cy.wait('@getClaimHistory', { timeout: 20000 });
+      // ตรวจสอบ selector panel 7
+      const PANEL7_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_2_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_3_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_4_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_5_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_6_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_7_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_8_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_9_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_10_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_11_Head_Column_Data_Grid',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_12_Head_Column_Data_Grid',
+      ];
+      const notPassLogs = [];
+      let passCount = 0;
+      let notPassCount = 0;
+      PANEL7_KEYS.forEach(selKey => {
+        const selector = Selector[selKey];
+        if (!selector) {
+          const msg = `❌ FAIL: ไม่พบ selector key ${selKey}`;
+          cy.log(msg);
+          cy.task('logToReport', msg);
+          notPassLogs.push(msg);
+          notPassCount++;
+          return;
+        }
+        cy.get('body').then($body => {
+          if ($body.find(selector).length > 0) {
+            cy.get(selector, { timeout: 10000 })
+              .should('be.visible')
+              .then(() => {
+                cy.log(`✅ PASS: ${selKey}`);
+                cy.task('logToReport', `✅ PASS: ${selKey}`);
+                passCount++;
+              }, () => {
+                const msg = `❌ FAIL: ${selKey}`;
+                cy.log(msg);
+                cy.task('logToReport', msg);
+                notPassLogs.push(msg);
+                notPassCount++;
+              });
+          } else {
+            const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
+            cy.log(msg);
+            cy.task('logToReport', msg);
+            notPassLogs.push(msg);
+            notPassCount++;
+          }
+        });
+      });
+      cy.then(() => {
+        if (notPassLogs.length > 0) {
+          cy.log('==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====');
+          notPassLogs.forEach(msg => cy.log(msg));
+          cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL7_KEYS.length} ====`);
+          cy.task('logToReport', `==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====:\n${notPassLogs.join('\n')}\n==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${PANEL7_KEYS.length} ====`);
+        } else {
+          cy.log(`==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL7_KEYS.length} ====`);
+          cy.task('logToReport', `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${PANEL7_KEYS.length} ====`);
+        }
+      });
     });
   });
 });
