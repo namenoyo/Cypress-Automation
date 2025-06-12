@@ -224,7 +224,7 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
     waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel).then(() => {
-      const PANEL7_KEYS = [
+      const PANEL007_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_2_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_3_Head_Column_Data_Grid',
@@ -238,7 +238,48 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_11_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_12_Head_Column_Data_Grid',
       ];
-      logSelectorCheck(PANEL7_KEYS, Selector);
+      logSelectorCheck(PANEL007_KEYS, Selector);
+    });
+  });
+
+  it('TC-Test_Selector-008', () => {
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel).then(() => {
+      const PANEL008_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_11_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_13_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_15_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_16_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_17_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_18_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_19_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_20_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_21_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_22_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_23_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_24_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_25_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_26_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_27_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_28_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_29_Detail_Panel_Data',
+      ];
+      logSelectorCheck(PANEL008_KEYS, Selector);
     });
   });
 });
