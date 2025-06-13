@@ -51,7 +51,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_9_Menu_Bar_Label',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_In_Page_10_Menu_Bar_Label',
       ];
-      logSelectorCheck(CIS_DETAIL_MENU_KEYS, Selector);
+      const resolvedSelectors = CIS_DETAIL_MENU_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -104,7 +118,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_40_Detail_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_41_Detail_Panel',
       ];
-      logSelectorCheck(PANEL001_KEYS, Selector);
+      const resolvedSelectors = PANEL001_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -130,7 +158,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2_In_Page_13_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2_In_Page_14_Data_Grid',
       ];
-      logSelectorCheck(PANEL002_KEYS, Selector);
+      const resolvedSelectors = PANEL002_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -154,7 +196,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_11_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_12_Data_Grid',
       ];
-      logSelectorCheck(PANEL003_KEYS, Selector);
+      const resolvedSelectors = PANEL003_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -174,7 +230,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_7_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_8_Head_Column_Data_Grid',
       ];
-      logSelectorCheck(PANEL004_KEYS, Selector);
+      const resolvedSelectors = PANEL004_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -199,7 +269,21 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_12_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_13_Head_Column_Data_Grid',
       ];
-      logSelectorCheck(PANEL005_KEYS, Selector);
+      const resolvedSelectors = PANEL005_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
@@ -218,7 +302,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
  });*/
 
 
-  it('TC-Test_Selector-007', () => {
+  it.only('TC-Test_Selector-007', () => {
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
@@ -238,11 +322,25 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_11_Head_Column_Data_Grid',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_12_Head_Column_Data_Grid',
       ];
-      logSelectorCheck(PANEL007_KEYS, Selector);
+      const resolvedSelectors = PANEL007_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 
-  it.only('TC-Test_Selector-008', () => { // Select Dynamic Panel 8
+  it('TC-Test_Selector-008', () => { // Selector Dynamic 
     // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
