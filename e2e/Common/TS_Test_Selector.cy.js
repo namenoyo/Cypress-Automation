@@ -139,7 +139,7 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_1_Header_Panel).then(({ customerId }) => {
       const PANEL003_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_3_In_Page_2_Button',
@@ -163,7 +163,7 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_1_Header_Panel).then(({ customerId }) => {
       const PANEL004_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_2_Head_Column_Data_Grid',
