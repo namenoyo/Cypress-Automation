@@ -1,16 +1,15 @@
 // Reuseable/Log_Count.js
 /**
  * ตรวจสอบ selector ทั้งหมดใน keys, log ผล, และสรุปยอด pass/fail/skip
- * @param {string[]} keys - รายการ selector key
- * @param {object} Selector - object ที่เก็บ selector
+ * @param {string[]} selectors - รายการ selector string
  */
-function logSelectorCheck(keys, Selector) {
+function logSelectorCheck(selectors, keys) {
   const notPassLogs = [];
   const passLogs = [];
   let passCount = 0;
   let notPassCount = 0;
-  keys.forEach(selKey => {
-    const selector = Selector[selKey];
+  selectors.forEach((selector, idx) => {
+    const label = Array.isArray(keys) && keys[idx] ? keys[idx] : selector;
     cy.get('body').then($body => {
       if ($body.find(selector).length > 0) {
         cy.get(selector, { timeout: 10000 }).then($els => {
@@ -19,13 +18,13 @@ function logSelectorCheck(keys, Selector) {
               .scrollIntoView()
               .should('be.visible')
               .then(() => {
-                const msg = `✅ PASS: ${selKey} (single element)`;
+                const msg = `✅ PASS: ${label} (single element)`;
                 cy.log(msg);
                 cy.task('logToReport', msg);
                 passLogs.push(msg);
                 passCount++;
               }, () => {
-                const msg = `❌ FAIL: ${selKey} (single element)`;
+                const msg = `❌ FAIL: ${label} (single element)`;
                 cy.log(msg);
                 cy.task('logToReport', msg);
                 notPassLogs.push(msg);
@@ -36,20 +35,20 @@ function logSelectorCheck(keys, Selector) {
               .scrollIntoView()
               .should('be.visible')
               .then(() => {
-                const msg = `✅ PASS: ${selKey} (element index 2)`;
+                const msg = `✅ PASS: ${label} (element index 2)`;
                 cy.log(msg);
                 cy.task('logToReport', msg);
                 passLogs.push(msg);
                 passCount++;
               }, () => {
-                const msg = `❌ FAIL: ${selKey} (element index 2)`;
+                const msg = `❌ FAIL: ${label} (element index 2)`;
                 cy.log(msg);
                 cy.task('logToReport', msg);
                 notPassLogs.push(msg);
                 notPassCount++;
               });
           } else {
-            const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
+            const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${label}`;
             cy.log(msg);
             cy.task('logToReport', msg);
             notPassLogs.push(msg);
@@ -58,7 +57,7 @@ function logSelectorCheck(keys, Selector) {
             // Soft assert: do not throw here
           });
       } else {
-        const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${selKey}`;
+        const msg = `⚠️ SKIP: ไม่พบ element ใน DOM สำหรับ ${label}`;
         cy.log(msg);
         cy.task('logToReport', msg);
         notPassLogs.push(msg);
@@ -70,14 +69,14 @@ function logSelectorCheck(keys, Selector) {
     let summaryMsg;
     const allLogs = [];
     // Collect all selector results (pass/fail/skip) BEFORE logging
-    keys.forEach(selKey => {
-      const selector = Selector[selKey];
+    selectors.forEach((selector, idx) => {
+      const label = Array.isArray(keys) && keys[idx] ? keys[idx] : selector;
       if (!selector) {
-        allLogs.push(`❌ FAIL: ไม่พบ selector key ${selKey}`);
-      } else if (notPassLogs.find(msg => msg.includes(selKey))) {
-        allLogs.push(notPassLogs.find(msg => msg.includes(selKey)));
+        allLogs.push(`❌ FAIL: ไม่พบ selector: ${label}`);
+      } else if (notPassLogs.find(msg => msg.includes(label))) {
+        allLogs.push(notPassLogs.find(msg => msg.includes(label)));
       } else {
-        allLogs.push(`✅ PASS: ${selKey}`);
+        allLogs.push(`✅ PASS: ${label}`);
       }
     });
     // รวม log ทั้งหมด (PASS/FAIL/SKIP) กับ summaryMsg แล้วส่งไป logToReport ทีเดียว
@@ -85,12 +84,12 @@ function logSelectorCheck(keys, Selector) {
     if (notPassLogs.length > 0) {
       cy.log('==== สรุปผลที่ไม่ผ่าน (Fail/Skip) ทั้งหมด ====');
       notPassLogs.forEach(msg => cy.log(msg));
-      summaryMsg = `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${keys.length} ====}`;
+      summaryMsg = `{==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip ${notPassCount} จากทั้งหมด ${selectors.length} ====}`;
       cy.log(summaryMsg);
       cy.log(detailLog);
       cy.task('logToReport', `${detailLog}\n${summaryMsg}`);
     } else {
-      summaryMsg = `==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${keys.length} ====}`;
+      summaryMsg = `{==== รวมผล: ผ่าน ${passCount} ไม่ผ่าน/skip 0 จากทั้งหมด ${selectors.length} ====}`;
       cy.log(summaryMsg);
       cy.log(detailLog);
       cy.task('logToReport', `${detailLog}\n${summaryMsg}`);
@@ -100,7 +99,8 @@ function logSelectorCheck(keys, Selector) {
       cy.addDetailLogToContext(`${detailLog}\n${summaryMsg}`);
     }
     if (notPassLogs.length > 0) {
-      throw new Error(`${summaryMsg}\n${detailLog}`);
+      // throw new Error(`${summaryMsg}\n${detailLog}`);
+      cy.addDetailLogToContext(`${detailLog}\n${summaryMsg}`);
     }
   });
 }

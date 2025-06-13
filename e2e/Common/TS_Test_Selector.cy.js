@@ -19,7 +19,7 @@ const testData = require('../../fixtures/Data_Test');
 const testUser = loginTestCases.find(tc => tc.expectSuccess);
 
 // กำหนด เลือก ENV
-const NBS_URL = url.ENV_SIT_NBS;   
+const NBS_URL = url.ENV_SIT_NBS;
 //const NBS_URL = url.ENV_UAT_NBS;
 
 
@@ -54,7 +54,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
       logSelectorCheck(CIS_DETAIL_MENU_KEYS, Selector);
     });
   });
-  
+
   it('TC-Test_Selector-001', () => { // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
@@ -108,7 +108,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
-it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2
+  it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_2
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
@@ -206,16 +206,16 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
   /*it('TC-Test_Selector-006', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6
     Go_to_CIS();
     /*///cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
-   /* const policyNo = testData[0].ORD_Policy_no;
-    searchAndOpenCisPolicyDetail(policyNo);
-    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
-      const PANEL006_KEYS = [
-        'xxxxx',
-        
-      ];
-      logSelectorCheck(PANEL006_KEYS, Selector);
-    });
-  });*/
+  /* const policyNo = testData[0].ORD_Policy_no;
+   searchAndOpenCisPolicyDetail(policyNo);
+   waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
+     const PANEL006_KEYS = [
+       'xxxxx',
+       
+     ];
+     logSelectorCheck(PANEL006_KEYS, Selector);
+   });
+ });*/
 
 
   it('TC-Test_Selector-007', () => {
@@ -242,12 +242,13 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
     });
   });
 
-  it('TC-Test_Selector-008', () => {
+  it.only('TC-Test_Selector-008', () => {
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
-    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel).then(() => {
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel(policyNo)).then(() => {
       const PANEL008_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_2_Detail_Panel',
@@ -279,7 +280,22 @@ it('TC-Test_Selector-002', () => { //ตรวจสอบวัตถุต่�
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_28_Detail_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8_In_Page_29_Detail_Panel_Data',
       ];
-      logSelectorCheck(PANEL008_KEYS, Selector);
+      // map key เป็น selector string ที่ resolve ด้วย policyNo แล้วส่ง array นี้เข้า logSelectorCheck
+      const resolvedSelectors = PANEL008_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
     });
   });
 });
