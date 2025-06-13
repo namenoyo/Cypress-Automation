@@ -99,8 +99,7 @@ function logSelectorCheck(selectors, keys) {
       cy.addDetailLogToContext(`${detailLog}\n${summaryMsg}`);
     }
     if (notPassLogs.length > 0) {
-      // throw new Error(`${summaryMsg}\n${detailLog}`);
-      cy.addDetailLogToContext(`${detailLog}\n${summaryMsg}`);
+      throw new Error(`${summaryMsg}\n${detailLog}`);
     }
   });
 }

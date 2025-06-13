@@ -242,7 +242,8 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
-  it.only('TC-Test_Selector-008', () => {
+  it.only('TC-Test_Selector-008', () => { // Select Dynamic Panel 8
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_8
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
