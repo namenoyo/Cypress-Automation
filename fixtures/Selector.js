@@ -233,7 +233,6 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_4_In_Page_8_Head_Column_Data_Grid: '#tab\\/cisapp_customer\\/display > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(5) > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(7) > span > div',
 
   // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ประวัติการพิจารณาสินไหม
-
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_1_Header_Panel: '#section-claim > div > div.MuiButtonBase-root.MuiExpansionPanelSummary-root.makeStyles-root-48 > div.MuiExpansionPanelSummary-content > div > div.MuiGrid-root.ExpansionPanelSummaryTitle.MuiGrid-item',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_2_Head_Column_Data_Grid: 'div.MUIDataTableHeadCell-data-47:contains("เลขที่กรมธรรม์")',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_3_Head_Column_Data_Grid: 'div.MUIDataTableHeadCell-data-47:contains("วันที่สินไหมรับเรื่อง")',
@@ -248,6 +247,17 @@ module.exports = {
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_12_Head_Column_Data_Grid: '#section-claim > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(11) > span > div',
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_13_Head_Column_Data_Grid: '#section-claim > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(12) > span > div',
 
+  // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ประวัติการรับเรื่องสินไหม (panel_6)
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_1_Header_Panel: '#tab\\/cisapp_customer\\/display > div > div > div > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(2) > div > div > div:nth-child(1) > div > div > div:nth-child(2)',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_2_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(1) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_4_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(2) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_6_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(3) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_8_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(5) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_10_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(5) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_12_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(6) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_14_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(7) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_16_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(8) > span > div',
+  SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_18_Detail_Panel: '#section-payment-history-undefined > div > div.MuiCollapse-container.MuiCollapse-entered > div > div > div > div > div > div > div > div.MUIDataTable-responsiveScroll-4 > table > thead > tr > th:nth-child(9) > span > div',
 
   // CIS หน้าจอค้นหาข้อมูลลูกค้า > ดูรายละเอียด > panel ประวัติการพิจารณาสินไหม
   SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_7_In_Page_1_Header_Panel: 'div.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-column.MuiGrid-wrap-xs-nowrap.MuiGrid-align-content-xs-flex-start > div:nth-child(3) > div.makeStyles-setScroll-131 > div > div> div> div> div:nth-child(2)',

@@ -290,19 +290,44 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   })
 
-  /*it('TC-Test_Selector-006', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6
+
+  it.only('TC-Test_Selector-006', () => { // Selector panel_6
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6
     Go_to_CIS();
-    /*///cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
-  /* const policyNo = testData[0].ORD_Policy_no;
-   searchAndOpenCisPolicyDetail(policyNo);
-   waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_1_In_Page_1_Header_Panel).then(({ customerId }) => {
-     const PANEL006_KEYS = [
-       'xxxxx',
-       
-     ];
-     logSelectorCheck(PANEL006_KEYS, Selector);
-   });
- });*/
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_1_Header_Panel).then(() => {
+      const PANEL006_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_16_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_6_In_Page_18_Detail_Panel',
+      ];
+      const resolvedSelectors = PANEL006_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
 
 
   it('TC-Test_Selector-007', () => {
