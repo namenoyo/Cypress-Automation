@@ -249,13 +249,14 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
     });
   });
 
- /* it('TC-Test_Selector-005', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5
+  it('TC-Test_Selector-005', () => { //ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5
     Go_to_CIS();
-    //cy.intercept('POST', '**///customerSearch/customerInfoList.html').as('getCustomerInfoList');
-   /* const policyNo = testData[0].ORD_Policy_no;
+    cy.intercept('POST', '**///customerSearch/customerInfoList.html').as('getCustomerInfoList');
+   const policyNo = testData[0].ORD_Policy_no;
     searchAndOpenCisPolicyDetail(policyNo);
     waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_1_Header_Panel).then(({ customerId }) => {
-      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_1_Header_Panel).click({ force: true });
+      cy.get(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_1_Header_Panel).click({ force: true }).wait(2000);
+      
       const PANEL005_KEYS = [
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_1_Header_Panel',
         'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_5_In_Page_2_Head_Column_Data_Grid',
@@ -287,7 +288,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         resolvedSelectors.map(x => x.label)
       );
     });
-  })*/
+  })
 
 
   it.only('TC-Test_Selector-006', () => { // Selector panel_6
