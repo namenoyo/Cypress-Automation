@@ -304,7 +304,7 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
  });*/
 
 
-  it.only('TC-Test_Selector-007', () => {
+  it('TC-Test_Selector-007', () => {
     Go_to_CIS();
     cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
     const policyNo = testData[0].ORD_Policy_no;
@@ -398,5 +398,280 @@ describe('ตรวจสอบหน้าค้นหาข้อมูลล�
         resolvedSelectors.map(x => x.label)
       );
     });
+
   });
+
+  it('TC-Test_Selector-009', () => { // Selector Dynamic
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL009_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_11_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_9_In_Page_13_Detail_Panel_Data',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo แล้วส่ง array นี้เข้า logSelectorCheck
+      const resolvedSelectors = PANEL009_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
+  it('TC-Test_Selector-010', () => { // Selector Dynamic
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL010_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_10_In_Page_9_Detail_Panel_Data',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo แล้วส่ง array นี้เข้า logSelectorCheck
+      const resolvedSelectors = PANEL010_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
+  it('TC-Test_Selector-011', () => { // Selector panel_11
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL011_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_11_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_13_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_11_In_Page_15_Detail_Panel_Data',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo ถ้าเป็น function, ถ้าเป็น string ให้ใช้ตรงๆ
+      const resolvedSelectors = PANEL011_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
+  it('TC-Test_Selector-012', () => { // Selector panel_12
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL012_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_12_In_Page_11_Detail_Panel_Data',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo ถ้าเป็น function, ถ้าเป็น string ให้ใช้ตรงๆ
+      const resolvedSelectors = PANEL012_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
+  it('TC-Test_Selector-013', () => { // Selector panel_13
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL013_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_11_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_13_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_15_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_16_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_17_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_18_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_19_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_20_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_21_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_22_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_13_In_Page_23_Detail_Panel_Data',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo ถ้าเป็น function, ถ้าเป็น string ให้ใช้ตรงๆ
+      const resolvedSelectors = PANEL013_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
+  it('TC-Test_Selector-014', () => { // Selector panel_14
+    // ตรวจสอบวัตถุต่างๆ ใน selector CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14
+    Go_to_CIS();
+    cy.intercept('POST', '**/customerSearch/customerInfoList.html').as('getCustomerInfoList');
+    const policyNo = testData[0].ORD_Policy_no;
+    searchAndOpenCisPolicyDetail(policyNo);
+    // ต้องรอโหลดข้อมูลก่อน (เหมือนเดิม)
+    waitForCustomerInfoAndClaimHistory(Selector.SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_1_Header_Panel(policyNo)).then(() => {
+      const PANEL014_KEYS = [
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_1_Header_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_2_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_3_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_4_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_5_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_6_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_7_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_8_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_9_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_10_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_11_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_12_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_13_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_14_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_15_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_16_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_17_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_18_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_19_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_20_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_21_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_22_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_23_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_24_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_25_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_26_Detail_Panel',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_27_Detail_Panel_Data',
+        'SELECTOR_CIS_MENU_SUB_1_SEARCH_1_Detail_1_panel_14_In_Page_28_Button',
+      ];
+      // map key เป็น selector string ที่ resolve ด้วย policyNo ถ้าเป็น function, ถ้าเป็น string ให้ใช้ตรงๆ
+      const resolvedSelectors = PANEL014_KEYS.map(key => {
+        const sel = Selector[key];
+        if (typeof sel === 'function') {
+          return { selector: sel(policyNo), label: key };
+        }
+        if (typeof sel === 'string') {
+          return { selector: sel, label: key };
+        }
+        console.warn('Selector for key', key, 'is not a function or string:', sel);
+        return { selector: '', label: key };
+      });
+      logSelectorCheck(
+        resolvedSelectors.map(x => x.selector),
+        resolvedSelectors.map(x => x.label)
+      );
+    });
+  });
+
 });
